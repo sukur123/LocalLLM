@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use the Offline LLM Chat</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #3498db;
+            margin-top: 30px;
+        }
+        pre {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: Monaco, Menlo, "Courier New", monospace;
+            background-color: #f1f1f1;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        .note {
+            background-color: #fff3e0;
+            border-left: 4px solid #ff6700;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .steps {
+            counter-reset: step-counter;
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .steps li {
+            counter-increment: step-counter;
+            margin-bottom: 20px;
+            padding-left: 40px;
+            position: relative;
+        }
+        .steps li::before {
+            content: counter(step-counter);
+            background-color: #3498db;
+            color: white;
+            font-weight: bold;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>How to Use the Offline LLM Chat</h1>
+    
+    <div class="note">
+        <strong>Note:</strong> This application runs a large language model entirely in your browser without requiring a server or internet connection (after initial load).
+    </div>
+    
+    <h2>Running the Application</h2>
+    
+    <ol class="steps">
+        <li>
+            <strong>Download a model</strong> by running the provided script:
+            <pre>./download-models.sh</pre>
+            This will download a suitable GGUF model file to the models/ directory.
+        </li>
+        <li>
+            <strong>Build the WebAssembly module</strong> using the build script:
+            <pre>./build-wasm.sh</pre>
+            This will compile llama.cpp to WebAssembly and place the files in the wasm/ directory.
+        </li>
+        <li>
+            <strong>Start the local server</strong> by running:
+            <pre>./start-server.sh</pre>
+            This starts a simple HTTP server on port 8080 (or another available port).
+        </li>
+        <li>
+            <strong>Open your browser</strong> and navigate to the URL shown in the terminal (typically http://localhost:8080).
+        </li>
+        <li>
+            <strong>Wait for the model to load</strong>. This may take some time depending on the model size and your device's capabilities.
+        </li>
+        <li>
+            <strong>Start chatting!</strong> Once loaded, you can start typing messages to interact with the model.
+        </li>
+    </ol>
+    
+    <h2>Demo Mode</h2>
+    
+    <p>If you see <strong style="color: #ff6700;">DEMO MODE</strong> in the status bar, it means the WebAssembly module has not been successfully loaded yet. In demo mode:</p>
+    
+    <ul>
+        <li>The interface is fully functional but the responses are pre-programmed</li>
+        <li>No actual model computation is performed</li>
+        <li>This is useful for testing the UI before having built the WASM files</li>
+    </ul>
+    
+    <h2>Building the WASM Module</h2>
+    
+    <p>To get full functionality, you need to build the WebAssembly module from llama.cpp:</p>
+    
+    <ol class="steps">
+        <li>
+            <strong>Follow the instructions</strong> in <code>BUILD_INSTRUCTIONS.md</code> to compile llama.cpp to WebAssembly.
+        </li>
+        <li>
+            <strong>Copy the generated files</strong> (<code>llama-wasm.js</code> and <code>llama-wasm.wasm</code>) to the <code>wasm/</code> directory.
+        </li>
+        <li>
+            <strong>Place your GGUF model file</strong> in the <code>models/</code> directory. The model should be in GGUF format.
+        </li>
+        <li>
+            <strong>Restart the application</strong> and it should now run with the actual model.
+        </li>
+    </ol>
+    
+    <h2>Troubleshooting</h2>
+    
+    <ul>
+        <li><strong>Error: Model is not loaded</strong> - Check that the model file exists in the models/ directory and is correctly referenced in chat.js</li>
+        <li><strong>Browser crashes</strong> - Try a smaller model or a more quantized version (2-bit or 4-bit)</li>
+        <li><strong>Very slow responses</strong> - This is expected for larger models. Consider using a more powerful device or a smaller model</li>
+    </ul>
+    
+    <div class="note">
+        <strong>Memory Usage:</strong> WebAssembly in browsers has memory limitations. For best results, use smaller models (1-7B parameters) or heavily quantized models (Q2_K, Q4_K).
+    </div>
+    
+    <p><a href="index.html">Go to Chat Interface</a></p>
+</body>
+</html>

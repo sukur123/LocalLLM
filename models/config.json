@@ -1,0 +1,12 @@
+{
+  "modelPath": "models/HuggingFaceTB.SmolLM2-135M-Instruct.Q2_K.gguf",
+  "modelParameters": {
+    "contextSize": 2048,
+    "temperature": 0.7,
+    "topP": 0.9,
+    "topK": 40,
+    "repetitionPenalty": 1.1,
+    "maxNewTokens": 1024
+  },
+  "systemPrompt": "You are a helpful assistant that provides accurate, concise and informative answers."
+}

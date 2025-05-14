@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline LLM Chat</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Offline LLM Chat</h1>
+            <div id="status">Status: Loading model...</div>
+            <div class="header-links">
+                <a href="usage.html" target="_blank">How to Use</a>
+                <button id="demo-mode-button" class="demo-button">Use Demo Mode</button>
+            </div>
+        </header>
+        
+        <div class="chat-container">
+            <div id="chat-messages" class="messages"></div>
+            
+            <div class="input-area">
+                <textarea id="user-input" placeholder="Type your message here..." rows="3"></textarea>
+                <button id="send-button" disabled>Send</button>
+            </div>
+        </div>
+        
+        <div class="model-info">
+            <div id="model-name">Model: Not loaded</div>
+            <div id="memory-usage">Memory: N/A</div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/log.js"></script>
+    <script src="wasm/llama-loader-new.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/ui.js"></script>
+</body>
+</html>
