@@ -34,7 +34,7 @@ Try it online at: [https://sukur123.github.io/localLLMWeb](https://sukur123.gith
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-github-username/localLLMWeb.git
+   git clone https://github.com/sukur123/localLLMWeb.git
    cd localLLMWeb
    ```
 
