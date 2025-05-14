@@ -19,7 +19,7 @@ This project implements a completely offline chatbot that runs a local LLM direc
 
 ## 🖥️ Demo
 
-Try it online at: [https://your-github-username.github.io/localLLMWeb](https://your-github-username.github.io/localLLMWeb) (demo mode)
+Try it online at: [https://sukur123.github.io/localLLMWeb](https://sukur123.github.io/localLLMWeb) (demo mode)
 
 ## 📋 Prerequisites
 
